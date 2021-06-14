@@ -1,0 +1,51 @@
+<template>
+  <header>
+        <div class="header_container">
+            <img src="../assets/img/logo.png" alt="logo">
+            <div>
+                <input type="text" 
+                placeholder="Cosa vuoi guardare?"
+                v-model.trim="filmSearched"
+                @keyup="$emit('searchedFilm', filmSearched)">
+                <button @click="$emit('searchedFilm', filmSearched)">Cerca</button>
+            </div>
+        </div>
+  </header>
+</template>
+
+<script>
+export default {
+    name: "Header",
+
+    data() {
+        return{
+            filmSearched:""
+        }
+    }
+} 
+
+</script>
+
+<style lang="scss" scoped>
+@import '../style/variables.scss'; 
+    .header_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+        height: 100px;
+        background-color: #293e6b;
+
+        input {
+            width: 400px;
+            height: 30px;
+            border: 2px solid #dc1a28;
+            border-radius: 7px;
+            color: #dc1a28;
+        }
+
+        button {
+            margin-left: 20px;
+        }
+    }
+</style>
