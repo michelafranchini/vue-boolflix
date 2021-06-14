@@ -1,11 +1,14 @@
 <template>
     <div class="film">
-        <ul>
+        <!-- <ul>
             <li>{{item.title}}</li>
             <li>{{item.original_title}}</li>
             <li>{{item.original_language}}</li>
 
-        </ul>
+        </ul> -->
+        <img :src="item.poster_path" alt="">
+        <h2>{{item.title}}</h2>
+        <h3>{{item.original_title}}</h3>
     </div>
 </template>
 
@@ -13,7 +16,11 @@
 
 export default {
     name: "Film", 
-    props: ["item"]
+    props: ["item"], 
+
+    computed: {
+        //https://image.tmdb.org/t/p/
+    }
 }
 </script>
 
@@ -23,7 +30,8 @@ export default {
     .film {
         @include starSettings;
         background-color: yellow;
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 400px;
+        margin: 10px;
     }
 </style>

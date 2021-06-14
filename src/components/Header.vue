@@ -19,7 +19,7 @@ export default {
 
     data() {
         return{
-            filmSearched:""
+            filmSearched: ""
         }
     }
 } 
@@ -39,12 +39,15 @@ export default {
         input {
             width: 400px;
             height: 30px;
+            padding:  0 10px;
             border: 2px solid #dc1a28;
             border-radius: 7px;
-            color: #dc1a28;
+            font-size: 20px;
+            color: black;
         }
 
         button {
+            height: 30px;
             margin-left: 20px;
         }
     }

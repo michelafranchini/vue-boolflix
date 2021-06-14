@@ -3,30 +3,53 @@
     <Header @searchedFilm="searchItem"/>
 
     <main>
-      <Main :movie="newFilm"/>
+      <div class="film_container">
+        <Film 
+        :movie="newFilm" 
+        v-for="(film, index) in films" 
+        :key="index" 
+        :item="film"/>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
+import Header from './components/Header.vue'; 
+import Film from './components/Film.vue'; 
+
+import axios from 'axios'; 
 
 export default {
   name: 'App',
   components: { 
     Header, 
-    Main
+    Film
   }, 
   data() {
     return {
-      newFilm: ""
+      newFilm: "", 
+      films: [],
+      api_url: "https://api.themoviedb.org/3/search/movie?", 
+      api_key: "api_key=a31b6f1e88fbabef39333e8fbdcf391b", 
+      query: "", 
+      language: ""
     }
   }, 
   methods: {
     searchItem(string) {
-      this.newFilm = string
-    }
+      this.query = string; 
+          axios
+          .get(`${this.api_url}${this.api_key}&query=${this.query}`)
+          .then(
+              (result) => {
+                  console.log(result.data);
+                  this.films = result.data.results; 
+                  console.log(this.films);
+              }
+          ) 
+    }, 
+
   }
 }
 </script>
@@ -36,12 +59,17 @@ export default {
 @import './style/variables.scss';
 
 body {
-  @include starSettings; 
+  @include starSettings;
+  background-color: #131c31; 
 }
 
 main {
-  height: calc(100vh - 100px ) ; 
-  background-color: #3170cf;
-
+  height: calc(100% - 100px ) ; 
+  
+   .film_container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
 }
 </style>
