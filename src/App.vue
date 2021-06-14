@@ -46,6 +46,7 @@ export default {
                   console.log(result.data);
                   this.films = result.data.results; 
                   console.log(this.films);
+
               }
           ) 
     }, 
