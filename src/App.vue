@@ -30,28 +30,33 @@ export default {
     return {
       newFilm: "", 
       films: [],
-      api_url: "https://api.themoviedb.org/3/search/movie?", 
-      api_key: "api_key=a31b6f1e88fbabef39333e8fbdcf391b", 
+      // api_url: "https://api.themoviedb.org/3/search/movie?", 
+      // api_key: "api_key=a31b6f1e88fbabef39333e8fbdcf391b", 
       query: "", 
-      language: ""
+      language: "", 
+      apiFilmUrlKey:"https://api.themoviedb.org/3/search/movie?api_key=a31b6f1e88fbabef39333e8fbdcf391b", 
+      apiSeriesUrlKey: "https://api.themoviedb.org/3/search/tv?api_key=a31b6f1e88fbabef39333e8fbdcf391b"
     }
   }, 
   methods: {
     searchItem(string) {
       this.query = string; 
-          axios
-          .get(`${this.api_url}${this.api_key}&query=${this.query}`)
-          .then(
-              (result) => {
-                  console.log(result.data);
-                  this.films = result.data.results; 
-                  console.log(this.films);
+      const filmRequest = axios.get(`${this.apiFilmUrlKey}&query=${this.query}`); 
+      const seriesRequest = axios.get(`${this.apiSeriesUrlKey}&query=${this.query}`);
+      
+      axios.all([filmRequest, seriesRequest])
+      .then(
+          axios.spread((result1, result2) => {
+            this.films = result1.data.results; 
+            this.films = result2.data.results;
 
-              }
-          ) 
+            console.log(this.films);
+          })
+      );
+      
     }, 
 
-  }
+  }, 
 }
 </script>
 
@@ -61,16 +66,23 @@ export default {
 
 body {
   @include starSettings;
-  background-color: #131c31; 
+  background-image: url('https://preview.redd.it/4fxxbm4opjd31.jpg?auto=webp&s=f5b7d62076600a978d290a5e87f13140c47f5cd0');
 }
 
 main {
-  height: calc(100% - 100px ) ; 
+  height: calc(100% - 100px) ;
+  width: 100%;
+  position: relative;
   
    .film_container {
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        background-color: rgba(0 ,0,0, 0.5);
     }
 }
 </style>
