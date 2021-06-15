@@ -27,7 +27,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/variables.scss'; 
+@import '../style/variables.scss';
+@import "~@fontsource/staatliches/400.css";
+
     .header_container {
         display: flex;
         justify-content: space-between;
@@ -43,12 +45,18 @@ export default {
             border: 2px solid #dc1a28;
             border-radius: 7px;
             font-size: 20px;
+            font-family: 'Staatliches';
             color: black;
         }
 
         button {
             height: 30px;
+            width: 80px;
             margin-left: 20px;
+            font-size: 18px;
+            font-family: 'Staatliches';
+            background-color: #dc1a28;
+            color: white ;
         }
     }
 </style>

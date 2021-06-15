@@ -8,7 +8,8 @@
         :movie="newFilm" 
         v-for="(film, index) in films" 
         :key="index" 
-        :item="film"/>
+        :item="film"
+        />
       </div>
     </main>
   </div>
