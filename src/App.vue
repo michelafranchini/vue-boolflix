@@ -63,26 +63,28 @@ export default {
 <style lang="scss">
 @import '~@fortawesome/fontawesome-free/css/all.min.css'; 
 @import './style/variables.scss';
+@import "~@fontsource/staatliches/400.css"; 
 
 body {
   @include starSettings;
+  font-family: 'Staatliches';
   background-image: url('https://preview.redd.it/4fxxbm4opjd31.jpg?auto=webp&s=f5b7d62076600a978d290a5e87f13140c47f5cd0');
 }
 
 main {
   height: calc(100% - 100px) ;
   width: 100%;
-  position: relative;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  text-align: center;
+  background-color: rgba(0 ,0,0, 0.5);
   
    .film_container {
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-align: center;
-        background-color: rgba(0 ,0,0, 0.5);
+        
     }
 }
 </style>

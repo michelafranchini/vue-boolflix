@@ -11,7 +11,11 @@
                 <img class="lang" src="../assets/img/languages/en.png" alt="" v-if="item.original_language == 'en'">
                 <img class="lang" src="../assets/img/languages/it.png" alt="" v-else-if="item.original_language == 'it'">
                 <img class="lang" src="../assets/img/languages/all.png" alt="" v-else>
-                <h4>Voto: {{item.vote_average}}</h4>
+                <h4>Voto: <span>
+                    <i v-for="i in 5" :key="i" :class="i <= rating ? 'fas fa-star' : 'far fa-star'"></i>
+                    </span>
+                    </h4>
+                <!-- <p>{{item.overview}}</p> -->
             </div>
         </div>
 
@@ -29,6 +33,11 @@ export default {
             originalTitle: "Titolo originale: "
         }
     },
+    computed: {
+        rating() {
+            return Math.round(Math.round(this.item.vote_average)/2)
+        }
+    }
     
 }
 </script>
@@ -57,11 +66,11 @@ export default {
         }
 
         h2 {
-            font-size: 30px;
+            font-size: 35px;
         }
         
-        h3 {
-            font-size: 17px;
+        h3, h4 {
+            font-size: 20px;
         }
     }
 
@@ -73,7 +82,7 @@ export default {
         width: 100%;
         height: 100%;
         text-align: center;
-        background-color: rgba(20,44,95, 0.8);
+        background-color: rgba(20,44,95, 0.9);
         display: flex;
         justify-content: center;
         align-items:center; 
@@ -87,4 +96,14 @@ export default {
         visibility: visible;
     }
     
+    // .fas.fa-star {
+    //     width: 30px;
+
+    // }
+
+    .fa-star {
+        color: #eda513;
+        width: 30px;
+        font-size: 20px;
+    }
 </style>
